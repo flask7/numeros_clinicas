@@ -11,12 +11,12 @@ def home():
 	numeros = []
 	driver = webdriver.Chrome()
 	driver.get("http://regcess.mscbs.es/regcessWeb/inicioBuscarCentrosAction.do")
-	indice = driver.find_element_by_css_selector("#tipoCentroId > option")
+	indice = driver.find_elements_by_css_selector("#tipoCentroId > option")
 	for i in indice:
 		datos = driver.find_element_by_css_selector("#tipoCentroId > option:nth-child(" + i + ")").click()
 		datos1 = driver.find_element_by_css_selector("body > form > div.formLayout > div.formFoot > input")
 		datos2 = ActionChains(driver).click(datos1).perform()
-		indice2 = driver.find_element_by_css_selector("body > div.tableContainer > table > tbody > tr")
+		indice2 = driver.find_elements_by_css_selector("body > div.tableContainer > table > tbody > tr")
 		for x in indice2:
 			datos3 = driver.find_element_by_css_selector("body > div.tableContainer > table > tbody > tr:nth-child(" + x + ") > td:nth-child(9) > a")
 			datos4 = ActionChains(driver).click(datos3).perform()
@@ -38,7 +38,7 @@ def home():
 	    hoja.cell(column=col_dato, row=fila, value=dato[1])
 	fila+=1
 	wb.save(filename = ruta)
-	print(datos6, datos5)
+	print(centros, numeros)
 	return jsonify(datos6, datos5)
 
 if __name__ == '__main__':
