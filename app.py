@@ -7,6 +7,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
+	centros = []
+	numeros = []
 	driver = webdriver.Chrome()
 	driver.get("http://regcess.mscbs.es/regcessWeb/inicioBuscarCentrosAction.do")
 	datos = driver.find_element_by_css_selector("#tipoCentroId > option:nth-child(1)").click()
@@ -16,12 +18,14 @@ def home():
 	datos4 = ActionChains(driver).click(datos3).perform()
 	datos5 = driver.find_element_by_css_selector("body > div.tableContainer > div:nth-child(7) > div.caja3 > div.campoSeccionDetalleCentro").text
 	datos6 = driver.find_element_by_css_selector("body > div.tableContainer > div:nth-child(5) > div.caja1 > div.campoSeccionDetalleCentro").text
+	datos7 = driver.find_element_by_css_selector("body > div.tableContainer > div.tableHead > div > form > input")
+	datos8 = ActionChains(driver).click(datos7).perform()
 	driver.close()
 	data = {datos6: datos5}
 	wb = Workbook()
-	ruta = 'centros.xlsx'
+	ruta = './static/centros.xlsx'
 	hoja = wb.active
-	hoja.title = "Fecha-Valor"
+	hoja.title = "Números centros"
 	fila = 1 
 	col_fecha = 1 
 	col_dato = 2
