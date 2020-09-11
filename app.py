@@ -16,8 +16,9 @@ def home():
 	b = 0
 	for i in indice:
 		b = 0
-		a = a +1
-		datos = driver.find_element_by_css_selector("#tipoCentroId > option:nth-child(" + str(a) + ")").click()
+		a = a + 1
+		selector = driver.find_element_by_css_selector("#tipoCentroId > option:nth-child(" + str(a) + ")")
+		datos = ActionChains(driver).click(selector).perform()
 		datos1 = driver.find_element_by_css_selector("body > form > div.formLayout > div.formFoot > input")
 		indice2 = driver.find_elements_by_css_selector("body > div.tableContainer > table > tbody > tr")
 		datos2 = ActionChains(driver).click(datos1).perform()
