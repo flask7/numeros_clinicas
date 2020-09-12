@@ -22,8 +22,6 @@ def home():
 		a = a + 1
 		selector = driver.find_element_by_css_selector("#tipoCentroId > option:nth-child(" + str(a) + ")")
 		datos = ActionChains(driver).click(selector).perform()
-		'''alert = driver.switch_to.alert
-		alert.accept()'''
 		try:
 			WebDriverWait(driver, 3).until(EC.alert_is_present(),
                                    'Timed out waiting for PA creation ' +
@@ -47,7 +45,7 @@ def home():
 			datos9 = driver.find_element_by_css_selector("body > div.tableContainer > div.tableHead > div > button")
 			datos10 = ActionChains(driver).click(datos9).perform()
 	driver.close()
-	data = {centros: numeros}
+	data = {centros[0]: numeros[0]}
 	wb = Workbook()
 	ruta = './static/centros.xlsx'
 	hoja = wb.active
