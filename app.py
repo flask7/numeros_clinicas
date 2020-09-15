@@ -47,30 +47,16 @@ def prueba():
 
 				if b == len(indice2):
 					try:
-						datas = driver.find_element_by_xpath("/html/body/div[2]/div[4]/a[1]")
+						datas = driver.find_element_by_link_text('siguiente>>')
 
 						if datas.text == "siguiente>>":
 							datosxs = ActionChains(driver).click(datas).perform()
 							datos(2)
 
 					except NoSuchElementException:
-
-						try:
-
-							datas2 = driver.find_element_by_xpath("/html/body/div[2]/div[4]/a[3]")
-
-							if datas2.text == "siguiente>>":
-
-								datosxs = ActionChains(driver).click(datas2).perform()
-								datos(2)
-
-							else:
-								terminado = 1
-								break
-						except NoSuchElementException:
-							terminado = 1
-							break
-			datos(2)
+						terminado = 1
+						break
+		datos(2)				
 	driver.close()
 
 	'''for i in range(0, len(numeros) + 1):
