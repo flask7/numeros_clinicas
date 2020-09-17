@@ -19,6 +19,13 @@ def prueba():
 	numeros = []
 	driver = webdriver.Chrome()
 	driver.get("http://regcess.mscbs.es/regcessWeb/inicioBuscarCentrosAction.do")
+	localidad = driver.find_element_by_css_selector("#agenteComboId")
+	info1 = ActionChains(driver).click(localidad).perform()
+	local = driver.find_element_by_xpath("/html/body/form/div[2]/div[3]/select/option[14]").click()
+	priv = driver.find_element_by_css_selector("#codTipoDependenciaId")
+	info3 = ActionChains(driver).click(priv).perform()
+	privado = driver.find_element_by_css_selector("#codTipoDependenciaId > option:nth-child(4)").click()
+	#info4 = ActionChains(driver).click(privado).perform()
 	indice = driver.find_elements_by_css_selector("#tipoCentroId > option")
 	a = 1
 	terminado = 0
