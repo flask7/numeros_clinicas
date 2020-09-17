@@ -34,6 +34,8 @@ def prueba():
 	datos1 = driver.find_element_by_css_selector("body > form > div.formLayout > div.formFoot > input")
 	datos2 = ActionChains(driver).click(datos1).perform()
 	indice2 = driver.find_elements_by_css_selector("body > div.tableContainer > table > tbody > tr")
+	for x in range(1, 21):
+		driver.find_element_by_link_text('siguiente>>').click()
 	if terminado == 0:
 		def datos(b):
 			for b in range(2, len(indice2) + 1):
